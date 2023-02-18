@@ -34,7 +34,7 @@ public class BlogService {
         }
         catch(Exception e)
         {
-            return blog;
+            return null;
         }
         blog.setTitle(title);
         blog.setContent(content);
