@@ -31,7 +31,7 @@ public class BlogService {
         blog.setTitle(title);
         blog.setContent(content);
         blog.setUser(user);
-        blog.setPubDate(new Date());
+      //  blog.setPubDate(new Date());
        // blog.setUser(user);
        user.getBlogList().add(blog);
 
