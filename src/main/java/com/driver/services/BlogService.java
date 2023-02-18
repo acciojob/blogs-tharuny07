@@ -22,7 +22,7 @@ public class BlogService {
     @Autowired
     UserRepository userRepository1;
 
-    public Blog createAndReturnBlog(Integer userId, String title, String content){
+    public Blog createAndReturnBlog(Integer userId, String title, String content) throws Exception{
         //create a blog at the current time
 
         Blog blog=new Blog();
@@ -34,7 +34,7 @@ public class BlogService {
         }
         catch(Exception e)
         {
-            return null;
+            throw new Exception("No user found");
         }
         blog.setTitle(title);
         blog.setContent(content);
