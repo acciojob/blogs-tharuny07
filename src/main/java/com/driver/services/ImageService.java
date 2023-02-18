@@ -51,6 +51,7 @@ public class ImageService {
              count++;
              n+=imageArea;
          }
-         return count-2;
+        System.out.println(imageArea+""+screenArea);
+         return count;
     }
 }
