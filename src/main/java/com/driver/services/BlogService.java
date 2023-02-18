@@ -25,15 +25,7 @@ public class BlogService {
     public Blog createAndReturnBlog(Integer userId, String title, String content){
         //create a blog at the current time
         Blog blog=new Blog();
-        try{
-            userRepository1.findById(userId).get();
-        }
-        catch(Exception e){
-             return blog;
-        }
         User user=userRepository1.findById(userId).get();
-
-
        blog.setTitle(title);
        blog.setContent(content);
        blog.setUser(user);
@@ -48,7 +40,13 @@ public class BlogService {
 
     public void deleteBlog(int blogId){
         //delete blog and corresponding images
-         Blog blog=blogRepository1.findById(blogId).get();
+        try {
+            blogRepository1.findById(blogId).get();
+        }
+        catch(Exception e){
+            return;
+        }
+        Blog blog=blogRepository1.findById(blogId).get();
 
          blog.setImageList(new ArrayList<>());
          blogRepository1.save(blog);
