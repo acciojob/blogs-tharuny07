@@ -51,6 +51,6 @@ public class ImageService {
              count++;
              n+=imageArea;
          }
-         return count;
+         return count-2;
     }
 }
