@@ -15,18 +15,14 @@ public class BlogController {
      @Autowired
      BlogService blogService;
     @PostMapping
-    public ResponseEntity createBlog(@RequestParam Integer userId ,
+    public ResponseEntity<Blog> createBlog(@RequestParam Integer userId ,
                                      @RequestParam String title,
-                                     @RequestParam String content)throws Exception {
+                                     @RequestParam String content) {
         // Create a blog and add it under given userExc
-        try{
-            blogService.createAndReturnBlog(userId, title, content);
-        }
-        catch(Exception e){
-            throw new Exception("No user found");
-        }
 
-        return new ResponseEntity<>(HttpStatus.CREATED);
+            Blog blog=blogService.createAndReturnBlog(userId, title, content);
+
+        return new ResponseEntity<>(blog,HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{blogId}")
