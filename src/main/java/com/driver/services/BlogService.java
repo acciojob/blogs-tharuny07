@@ -30,7 +30,7 @@ public class BlogService {
 
        blog.setTitle(title);
        blog.setContent(content);
-       blog.setUser(user);
+
         try{
             user=userRepository1.findById(userId).get();
         }
@@ -38,6 +38,7 @@ public class BlogService {
         {
             return blog;
         }
+        blog.setUser(user);
        List<Blog> blogList=user.getBlogList();
        blogList.add(blog);
        user.setBlogList(blogList);
