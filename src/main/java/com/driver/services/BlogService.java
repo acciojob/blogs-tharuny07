@@ -28,16 +28,17 @@ public class BlogService {
         Blog blog=new Blog();
         User user=new User();
 
-       blog.setTitle(title);
-       blog.setContent(content);
-        blog.setUser(user);
+
         try{
             user=userRepository1.findById(userId).get();
         }
         catch(Exception e)
         {
-            return null;
+            return blog;
         }
+        blog.setTitle(title);
+        blog.setContent(content);
+        blog.setUser(user);
        // blog.setUser(user);
        List<Blog> blogList=user.getBlogList();
        blogList.add(blog);
