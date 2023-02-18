@@ -40,18 +40,15 @@ public class ImageService {
         int count=0;
          Image image=imageRepository2.findById(id).get();
          String imageDimensions=image.getDimensions();
-         int midIndexOfScreen=screenDimensions.indexOf('X');
-         int midIndexOfImage=imageDimensions.indexOf('X');
 
-         int imageArea=Integer.parseInt(imageDimensions.substring(0,midIndexOfImage))*Integer.parseInt(imageDimensions.substring(midIndexOfImage+1));
-         int screenArea=Integer.parseInt(screenDimensions.substring(0,midIndexOfScreen))*Integer.parseInt(screenDimensions.substring(midIndexOfScreen+1));
-         int n=imageArea;
-         while(n<=screenArea)
-         {
-             count++;
-             n+=imageArea;
-         }
-        System.out.println(imageArea+""+screenArea);
-         return count;
+         String [] scnArray=screenDimensions.split("X");
+         String [] imgArray=imageDimensions.split("X");
+
+         int scn1=Integer.parseInt(scnArray[0]);
+         int scn2=Integer.parseInt(scnArray[1]);
+         int img1=Integer.parseInt(imgArray[0]);
+         int img2=Integer.parseInt(imgArray[1]);
+
+         return (scn1/img1)*(scn2/img2);
     }
 }

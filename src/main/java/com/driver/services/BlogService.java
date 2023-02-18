@@ -26,23 +26,14 @@ public class BlogService {
         //create a blog at the current time
 
         Blog blog=new Blog();
-        User user=new User();
 
-
-        try{
-            user=userRepository1.findById(userId).get();
-        }
-        catch(Exception e)
-        {
-
-        }
+        User user=userRepository1.findById(userId).get();
         blog.setTitle(title);
         blog.setContent(content);
         blog.setUser(user);
+        blog.setPubDate(new Date());
        // blog.setUser(user);
-       List<Blog> blogList=user.getBlogList();
-       blogList.add(blog);
-       user.setBlogList(blogList);
+       user.getBlogList().add(blog);
 
        userRepository1.save(user);
        return blog;
@@ -50,16 +41,6 @@ public class BlogService {
 
     public void deleteBlog(int blogId){
         //delete blog and corresponding images
-        Blog blog=new Blog();
-        try {
-            blog=blogRepository1.findById(blogId).get();
-        }
-        catch(Exception e){
-        }
-       // Blog blog=blogRepository1.findById(blogId).get();
-
-         blog.setImageList(new ArrayList<>());
-         blogRepository1.save(blog);
 
          blogRepository1.deleteById(blogId);
     }
